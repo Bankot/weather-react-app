@@ -1,66 +1,78 @@
 import React, { Component } from "react";
-import arr from "./arr";
+import arr from "../names.jsx";
 import "./styles/input.css";
 import Bdiv from "./Bdiv";
+import { Link } from "react-router-dom";
 class Input extends Component {
   state = {
     baseArray: arr,
     collection: [],
     actual: ""
   };
+
   render() {
     let counter = 0;
     let collection = [];
     const handleKeyDown = () => {};
     const update = c => {
-      this.setState({ actual: c });
-      console.log(this.state.actual);
+      document.getElementById("myInput").value = c;
     };
+
     const clearCollection = () => {
-      this.setState({ collection: [] });
+      this.setState({ collection: [] }, () => {});
     };
     const handleChange = e => {
       clearCollection();
 
-      let val = e.target.value;
-      if (!val) {
-        return false;
-      }
-      //closeAllLists();
-      for (let i = 0; i < arr.length; i++) {
-        if (arr[i].substr(0, val.length).toUpperCase() === val.toUpperCase()) {
-          console.log(counter);
-          collection.push(
-            <Bdiv
-              key={counter++}
-              ownId={counter++}
-              valid={val}
-              continue={arr[i].substr(val.length)}
-              clear={clearCollection}
-              update={c => {
-                update(c);
-              }}
-            />
-          );
+      this.setState({ actual: e.target.value }, () => {
+        const { actual } = this.state;
+        if (!actual) {
+          return false;
         }
-      }
-      this.setState({ collection: collection });
+        //closeAllLists();
+        for (let i = 0; i < arr.length; i++) {
+          if (
+            arr[i].substr(0, actual.length).toUpperCase() ===
+            actual.toUpperCase()
+          ) {
+            counter++;
+            collection.push(
+              <Bdiv
+                key={counter}
+                ownId={counter}
+                value={arr[i]}
+                valid={actual}
+                continue={arr[i].substr(actual.length)}
+                clear={clearCollection}
+                update={c => {
+                  update(c);
+                }}
+              />
+            );
+          }
+        }
+
+        this.setState({ collection: collection });
+      });
     };
+    let result = document.getElementById("myInput")
+      ? document.getElementById("myInput").value
+      : "default";
     return (
       <div>
-        <form autoComplete="off" action="/action_page.php">
+        <form autoComplete="off">
           <div className="autocomplete">
             <input
               id="myInput"
               type="text"
-              name="myCountry"
-              placeholder="Country"
               onChange={e => {
                 handleChange(e);
               }}
             />
           </div>
-          <input type="submit" />
+          <button>
+            <Link to={"/" + result}>Submit</Link>
+          </button>
         </form>
         {this.state.collection}
       </div>

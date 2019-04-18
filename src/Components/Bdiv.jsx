@@ -6,8 +6,8 @@ class Bdiv extends Component {
     return (
       <div
         onClick={() => {
+          this.props.update(this.props.value);
           this.props.clear();
-          this.props.update(this.props.ownId);
         }}
         className="autocomplete-item"
       >
