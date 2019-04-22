@@ -1,0 +1,43 @@
+.weather-container {
+    text-align: center;
+    position: absolute;
+    width: 80%;
+    top: 30%;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 300px;
+    background-size: 100% 100%;
+    margin-left: 200px;
+    padding: 30px;
+}
+
+.Rain {
+    background: url(rain.png);
+    animation: rain .3s linear infinite;
+    z-index: 22;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    border: solid black 2px;
+    padding: 25px;
+}
+
+@keyframes rain {
+    0% {
+        background-position: 0% 100%;
+    }
+
+    100% {
+        background-position: 20% 0%;
+    }
+}
+
+
+.weather-container button {
+    background-color: tomato;
+    border: 0;
+    height: 40px;
+    width: 120px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}

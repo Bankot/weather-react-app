@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { BrowserRouter, Link } from "react-router-dom";
+import WeatherPanel from "./weatherPanel";
 class Weather extends Component {
-  state = { weather: [] };
+  state = { weather: [], type: {} };
   shouldComponentUpdate(nextProps, nextState) {
     return this.state.weather != nextState.weather;
   }
@@ -11,25 +13,51 @@ class Weather extends Component {
       .get(
         `http://api.openweathermap.org/data/2.5/weather?q=${city_id}&units=metric&appid=c256fc0b3f2c66de09e323592432c5f4`
       )
-      .then(e => {
-        this.setState({ weather: e.data.main }, () => {});
+      .then(res => {
+        this.setState(
+          { type: res.data.weather[0], weather: res.data.main, error: 0 },
+          () => {
+            console.log("axios succes");
+            console.log(res);
+            console.log(this.state.type);
+          }
+        );
+      })
+      .catch(error => {
+        this.setState({ error: 1 }, () => {
+          console.log("axios error");
+          console.log(this.state);
+        });
       });
   }
   componentWillMount() {
     this.getData();
   }
   render() {
-    console.log("render");
+    console.log(this.props);
+    const { temp_min, temp_max } = this.state.weather;
+    const { main, description } = this.state.type;
+    let possTemps =
+      temp_min === temp_max
+        ? null
+        : `possible temperatures: ${temp_min}-${temp_max}`;
 
-    return (
-      <div>
-        <h1>Temperature: {this.state.weather.temp}</h1>
-        <h1>
-          possible temperatures: {this.state.weather.temp_min}-
-          {this.state.weather.temp_max}
-        </h1>
-      </div>
-    );
+    let finaloutput =
+      this.state.error === 0 ? (
+        <WeatherPanel
+          temp={this.state.weather.temp}
+          possTemps={possTemps}
+          main={main}
+          description={description}
+        />
+      ) : (
+        <div>
+          <h1>Weather for this city not found.</h1>
+          <p>Please, try again</p>
+          <button onClick={this.props.history.goBack}>Back</button>
+        </div>
+      );
+    return <BrowserRouter>{finaloutput}</BrowserRouter>;
   }
 }
 

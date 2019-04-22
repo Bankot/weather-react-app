@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./styles/input.css";
 
 class Bdiv extends Component {
   state = {};

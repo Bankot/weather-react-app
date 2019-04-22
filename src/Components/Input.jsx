@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import arr from "../names.jsx";
 import "./styles/input.css";
 import Bdiv from "./Bdiv";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import video from "./Clouds-movie.mp4";
 class Input extends Component {
   state = {
     baseArray: arr,
@@ -17,14 +18,17 @@ class Input extends Component {
     const update = c => {
       document.getElementById("myInput").value = c;
     };
-
+    const handleSubmit = e => {
+      e.preventDefault();
+      this.props.history.push("/" + result.trim());
+    };
     const clearCollection = () => {
       this.setState({ collection: [] }, () => {});
     };
     const handleChange = e => {
       clearCollection();
 
-      this.setState({ actual: e.target.value }, () => {
+      this.setState({ actual: e.target.value.trim() }, () => {
         const { actual } = this.state;
         if (!actual) {
           return false;
@@ -44,6 +48,7 @@ class Input extends Component {
                 valid={actual}
                 continue={arr[i].substr(actual.length)}
                 clear={clearCollection}
+                className="input-suggestion"
                 update={c => {
                   update(c);
                 }}
@@ -58,10 +63,22 @@ class Input extends Component {
     let result = document.getElementById("myInput")
       ? document.getElementById("myInput").value
       : "default";
+    let collectionDiv =
+      this.state.collection.length > 13 ? (
+        <div className="collection">{this.state.collection}</div>
+      ) : (
+        <div className="collection-noscroll">{this.state.collection}</div>
+      );
+
     return (
-      <div>
-        <form autoComplete="off">
-          <div className="autocomplete">
+      <div className="main-wrapper">
+        <video className="weather-vid" loop autoplay="" muted>
+          <source type="video/mp4" src={video} loop={true} muted />
+        </video>
+
+        <div className="input-container">
+          <h1>Choose Yours City!</h1>
+          <form onSubmit={handleSubmit} autoComplete="off">
             <input
               id="myInput"
               type="text"
@@ -69,15 +86,15 @@ class Input extends Component {
                 handleChange(e);
               }}
             />
-          </div>
-          <button>
-            <Link to={"/" + result}>Submit</Link>
-          </button>
-        </form>
-        {this.state.collection}
+            <button>
+              <a>></a>
+            </button>
+          </form>
+          {collectionDiv}
+        </div>
       </div>
     );
   }
 }
 
-export default Input;
+export default withRouter(Input);
