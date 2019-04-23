@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import axios from "axios";
 import { BrowserRouter, Link } from "react-router-dom";
 import WeatherPanel from "./weatherPanel";
+import AnimateLoad from "./anim";
 class Weather extends Component {
   state = { weather: [], type: {} };
   shouldComponentUpdate(nextProps, nextState) {
-    return this.state.weather != nextState.weather;
+    return this.state.weather !== nextState.weather;
   }
   getData() {
     const { city_id } = this.props.match.params;
@@ -16,25 +17,18 @@ class Weather extends Component {
       .then(res => {
         this.setState(
           { type: res.data.weather[0], weather: res.data.main, error: 0 },
-          () => {
-            console.log("axios succes");
-            console.log(res);
-            console.log(this.state.type);
-          }
+          () => {}
         );
       })
       .catch(error => {
-        this.setState({ error: 1 }, () => {
-          console.log("axios error");
-          console.log(this.state);
-        });
+        this.setState({ error: 1 }, () => {});
       });
   }
   componentWillMount() {
     this.getData();
   }
+
   render() {
-    console.log(this.props);
     const { temp_min, temp_max } = this.state.weather;
     const { main, description } = this.state.type;
     let possTemps =
@@ -57,8 +51,13 @@ class Weather extends Component {
           <button onClick={this.props.history.goBack}>Back</button>
         </div>
       );
-    return <BrowserRouter>{finaloutput}</BrowserRouter>;
+
+    return (
+      <BrowserRouter>
+        <div>{finaloutput}</div>
+      </BrowserRouter>
+    );
   }
 }
 
-export default Weather;
+export default AnimateLoad(Weather);

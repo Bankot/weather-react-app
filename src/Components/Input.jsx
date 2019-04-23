@@ -3,7 +3,8 @@ import arr from "../names.jsx";
 import "./styles/input.css";
 import Bdiv from "./Bdiv";
 import { Link, withRouter } from "react-router-dom";
-import video from "./Clouds-movie.mp4";
+import video from "./movies/Main-movie.mp4";
+import AnimateLoad from "./anim";
 class Input extends Component {
   state = {
     baseArray: arr,
@@ -72,12 +73,12 @@ class Input extends Component {
 
     return (
       <div className="main-wrapper">
-        <video className="weather-vid" loop autoplay="" muted>
+        <video preload="auto" className="weather-vid" loop autoplay="" muted>
           <source type="video/mp4" src={video} loop={true} muted />
         </video>
 
         <div className="input-container">
-          <h1>Choose Yours City!</h1>
+          <h1>Choose Your City!</h1>
           <form onSubmit={handleSubmit} autoComplete="off">
             <input
               id="myInput"
@@ -96,5 +97,5 @@ class Input extends Component {
     );
   }
 }
-
-export default withRouter(Input);
+let Animated = AnimateLoad(Input);
+export default withRouter(Animated);
