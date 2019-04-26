@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Input from "./Components/Input";
 import Weather from "./Components/Weather";
 import { BrowserRouter, Route } from "react-router-dom";
 import MainWindow from "./Components/mainWindow";

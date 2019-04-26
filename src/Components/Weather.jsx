@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { BrowserRouter, Link } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import WeatherPanel from "./weatherPanel";
 import AnimateLoad from "./anim";
 class Weather extends Component {
@@ -43,6 +43,7 @@ class Weather extends Component {
           possTemps={possTemps}
           main={main}
           description={description}
+          cityName={this.props.match.params.city_id}
         />
       ) : (
         <div>

@@ -43,7 +43,13 @@ class WeatherPanel extends Component {
     };
     return (
       <div className={"weather-container"}>
-        <video preload="auto" className="weather-vid" loop autoplay="" muted>
+        <video
+          preload="auto"
+          className="weather-vid"
+          loop
+          autoPlay={true}
+          muted
+        >
           <source
             type="video/mp4"
             src={chooseVideo(this.props.main)}
@@ -52,6 +58,7 @@ class WeatherPanel extends Component {
           />
         </video>
         <div>
+          <h1 id="weatherPanel-cityName">{this.props.cityName}</h1>
           <h1>Temperature: {this.props.temp}</h1>
           <h1>{this.props.possTemps}</h1>
           <h2>Type of weather: {this.props.main}</h2>

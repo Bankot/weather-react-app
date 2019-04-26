@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import arr from "../names.jsx";
 import "./styles/input.css";
 import Bdiv from "./Bdiv";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import video from "./movies/Main-movie.mp4";
 import AnimateLoad from "./anim";
-import { isObject } from "util";
-import { create } from "domain";
+
 class Input extends Component {
   state = {
     baseArray: arr,
@@ -17,7 +16,6 @@ class Input extends Component {
   };
 
   render() {
-    const myRef = React.createRef();
     let counter = this.state.counter;
     let collection = [];
     const update = c => {
@@ -74,6 +72,23 @@ class Input extends Component {
         this.setState({ collection: collection });
       });
     };
+    const scroller = (numberOfChilds, upOrDown) => {
+      let height = document.getElementsByClassName("autocomplete-item")[0]
+        .offsetHeight;
+      switch (upOrDown) {
+        case "Up":
+          document.getElementById("collection").scrollBy(0, -height);
+          break;
+        case "Down":
+          document.getElementById("collection").scrollBy(0, height);
+          break;
+        default:
+          break;
+      }
+    };
+    const scrollerReset = () => {
+      document.getElementById("collection").scrollBy(0, -1111111111);
+    };
     const handleChange = e => {
       createCollection(e);
     };
@@ -96,22 +111,39 @@ class Input extends Component {
           //================ if there's active one =====================
           document.getElementsByClassName("autocomplete-item-active").length
         ) {
-          //================= reset ==============================
           if (e === "ArrowDown") {
             if (
               suggestionCounter >=
               document.getElementById("collection").childNodes.length - 1
             ) {
-              console.log("RESET");
+              //================= RESET =============================================
               suggestionCounter = 0;
+              scrollerReset();
+              classRemove();
+              classAdd(suggestionCounter);
+            } else {
+              suggestionCounter = indexChecker(arrayOfItems) + 1;
+              if (suggestionCounter > 4) {
+                scroller(
+                  document.getElementById("collection").childNodes.length,
+                  "Down"
+                );
+              }
+              classRemove();
               classAdd(suggestionCounter);
             }
-            suggestionCounter = indexChecker(arrayOfItems) + 1;
-            classRemove();
-            classAdd(suggestionCounter);
           }
-          if (e === "ArrowUp" && suggestionCounter > 0) {
+          if (e === "ArrowUp" && indexChecker(arrayOfItems) >= 1) {
             suggestionCounter = indexChecker(arrayOfItems) - 1;
+            if (
+              suggestionCounter <
+              document.getElementById("collection").childNodes.length - 5
+            ) {
+              scroller(
+                document.getElementById("collection").childNodes.length,
+                "Up"
+              );
+            }
             classRemove();
             classAdd(suggestionCounter);
           }
@@ -138,6 +170,7 @@ class Input extends Component {
           {this.state.collection}
         </div>
       );
+
     const classAdd = a => {
       if (document.getElementById("collection")) {
         document
@@ -161,7 +194,7 @@ class Input extends Component {
           preload="auto"
           className="weather-vid"
           loop
-          autoplay=""
+          autoPlay={true}
           muted
         >
           <source type="video/mp4" src={video} loop={true} muted />
@@ -181,7 +214,7 @@ class Input extends Component {
               }}
             />
             <button>
-              <a>></a>
+              <span>></span>
             </button>
           </form>
           {collectionDiv}
