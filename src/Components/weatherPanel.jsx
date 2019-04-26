@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import "./styles/weatherPanel.css";
 import "./styles/input.css";
 import Clouds from "./movies/Clouds-movie.mp4";
 import Rain from "./movies/Rain-movie.mp4";

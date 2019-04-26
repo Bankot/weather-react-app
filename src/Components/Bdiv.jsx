@@ -4,13 +4,20 @@ import "./styles/input.css";
 class Bdiv extends Component {
   state = {};
   render() {
+    let classN = "autocomplete-item";
     return (
       <div
+        onMouseEnter={() => {
+          this.props.classRemove();
+          this.props.classAdd(this.props.ownId - 1);
+        }}
+        onMouseLeave={() => {
+          this.props.classRemove();
+        }}
         onClick={() => {
           this.props.update(this.props.value);
-          this.props.clear();
         }}
-        className="autocomplete-item"
+        className={classN}
       >
         <strong>
           {this.props.valid[0].toUpperCase()}
