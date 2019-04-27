@@ -40,7 +40,7 @@ self.__precacheManifest = [
     "url": "/weather-react-app/static/media/Main-movie.c8e390e0.mp4"
   },
   {
-    "revision": "9279be08372a1097db3723b751383c0e",
+    "revision": "d64f8d77e2c67cf5057181b228f1188c",
     "url": "/weather-react-app/index.html"
   }
 ];
