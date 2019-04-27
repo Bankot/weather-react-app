@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/Bankot/weather-react-app/static/media/Rain-movie.00956046.mp4"
   },
   {
-    "revision": "20952b77a42b437b105a",
+    "revision": "867a7a7f4781a0fcf151",
     "url": "/Bankot/weather-react-app/static/css/main.45508c4f.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = [
     "url": "/Bankot/weather-react-app/static/media/Clouds-movie.8d79ee1d.mp4"
   },
   {
-    "revision": "20952b77a42b437b105a",
-    "url": "/Bankot/weather-react-app/static/js/main.d2e7403e.chunk.js"
+    "revision": "867a7a7f4781a0fcf151",
+    "url": "/Bankot/weather-react-app/static/js/main.2a478b46.chunk.js"
   },
   {
     "revision": "29b9c4991de86e4211d2129863b9d315",
@@ -40,7 +40,7 @@ self.__precacheManifest = [
     "url": "/Bankot/weather-react-app/static/media/Main-movie.c8e390e0.mp4"
   },
   {
-    "revision": "c5632ed9ef63ac01b3344607d1486687",
+    "revision": "75eea68e4792ef7c67b62b7badcb394e",
     "url": "/Bankot/weather-react-app/index.html"
   }
 ];
