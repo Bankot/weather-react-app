@@ -106,11 +106,6 @@ class Input extends Component {
     let suggestionCounter = 0;
 
     const keyHandler = e => {
-      console.log(
-        document.getElementById("unitchecker").options[
-          document.getElementById("unitchecker").selectedIndex
-        ].value
-      );
       //==================== if it exists =============================
       if (document.getElementById("collection").childNodes) {
         let arrayOfItems = document.getElementById("collection").childNodes;

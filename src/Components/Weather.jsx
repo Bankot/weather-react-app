@@ -9,10 +9,11 @@ class Weather extends Component {
     return this.state.weather !== nextState.weather;
   }
   getData() {
+    axios.defaults.headers.common["header1"] = "X-Requested-With";
     const { city_id } = this.props.match.params;
     axios
       .get(
-        `http://api.openweathermap.org/data/2.5/weather?q=${city_id}&${
+        `https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?q=${city_id}&${
           this.props.match.params.units
         }&appid=c256fc0b3f2c66de09e323592432c5f4`
       )
