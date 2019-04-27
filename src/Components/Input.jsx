@@ -19,8 +19,11 @@ class Input extends Component {
     let counter = this.state.counter;
     let collection = [];
     const update = c => {
+      let select = document.getElementById("unitchecker");
       document.getElementById("myInput").value = c;
-      this.props.history.push("/" + c);
+      this.props.history.push(
+        "/" + c + "&units=" + select.options[select.selectedIndex].value
+      );
     };
     const handleSubmit = e => {
       e.preventDefault();
@@ -103,6 +106,11 @@ class Input extends Component {
     let suggestionCounter = 0;
 
     const keyHandler = e => {
+      console.log(
+        document.getElementById("unitchecker").options[
+          document.getElementById("unitchecker").selectedIndex
+        ].value
+      );
       //==================== if it exists =============================
       if (document.getElementById("collection").childNodes) {
         let arrayOfItems = document.getElementById("collection").childNodes;
@@ -186,7 +194,6 @@ class Input extends Component {
         }
       }
     };
-    console.log("render");
     return (
       <div className="main-wrapper">
         <video
@@ -199,6 +206,11 @@ class Input extends Component {
         >
           <source type="video/mp4" src={video} loop={true} muted />
         </video>
+        <p id="unitchecker-label">Choose Units: </p>
+        <select id="unitchecker">
+          <option value="metric">Metrical</option>
+          <option value="imperial">Imperial</option>
+        </select>
 
         <div className="input-container">
           <h1>Choose Your City!</h1>

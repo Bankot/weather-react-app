@@ -20,6 +20,17 @@ class WeatherPanel extends Component {
     }
   }
   render() {
+    let unitSymbol = "";
+    switch (this.props.units) {
+      case "units=metric":
+        unitSymbol = "°C";
+        break;
+      case "units=imperial":
+        unitSymbol = "°F";
+        break;
+      default:
+        break;
+    }
     const chooseVideo = a => {
       switch (a) {
         case "Rain":
@@ -41,6 +52,7 @@ class WeatherPanel extends Component {
           console.log("default");
       }
     };
+    let possTempUnit = this.props.possTemps ? unitSymbol : "";
     return (
       <div className={"weather-container"}>
         <video
@@ -59,8 +71,14 @@ class WeatherPanel extends Component {
         </video>
         <div>
           <h1 id="weatherPanel-cityName">{this.props.cityName}</h1>
-          <h1>Temperature: {this.props.temp}</h1>
-          <h1>{this.props.possTemps}</h1>
+          <h1>
+            Temperature: {this.props.temp}
+            {unitSymbol}
+          </h1>
+          <h1>
+            {this.props.possTemps}
+            {possTempUnit}
+          </h1>
           <h2>Type of weather: {this.props.main}</h2>
           <h3>{this.props.description}</h3>
           <button onClick={this.props.history.goBack}>back</button>

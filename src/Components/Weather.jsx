@@ -12,7 +12,9 @@ class Weather extends Component {
     const { city_id } = this.props.match.params;
     axios
       .get(
-        `http://api.openweathermap.org/data/2.5/weather?q=${city_id}&units=metric&appid=c256fc0b3f2c66de09e323592432c5f4`
+        `http://api.openweathermap.org/data/2.5/weather?q=${city_id}&${
+          this.props.match.params.units
+        }&appid=c256fc0b3f2c66de09e323592432c5f4`
       )
       .then(res => {
         this.setState(
@@ -44,6 +46,7 @@ class Weather extends Component {
           main={main}
           description={description}
           cityName={this.props.match.params.city_id}
+          units={this.props.match.params.units}
         />
       ) : (
         <div>

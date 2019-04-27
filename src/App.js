@@ -9,7 +9,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Route exact path="/" component={MainWindow} />
-          <Route path="/:city_id" component={Weather} />
+          <Route path="/:city_id&:units" component={Weather} />
         </div>
       </BrowserRouter>
     );
