@@ -1,5 +1,5 @@
 {
-  "main.css": "/weather-react-app/static/css/main.45508c4f.chunk.css",
+  "main.css": "/weather-react-app/static/css/main.8059cca2.chunk.css",
   "main.js": "/weather-react-app/static/js/main.75134f36.chunk.js",
   "main.js.map": "/weather-react-app/static/js/main.75134f36.chunk.js.map",
   "runtime~main.js": "/weather-react-app/static/js/runtime~main.608e19b5.js",
@@ -7,9 +7,9 @@
   "static/js/2.f68bba3d.chunk.js": "/weather-react-app/static/js/2.f68bba3d.chunk.js",
   "static/js/2.f68bba3d.chunk.js.map": "/weather-react-app/static/js/2.f68bba3d.chunk.js.map",
   "index.html": "/weather-react-app/index.html",
-  "precache-manifest.53c2dfe0e5518582fb0bc93db164ab88.js": "/weather-react-app/precache-manifest.53c2dfe0e5518582fb0bc93db164ab88.js",
+  "precache-manifest.a6e1d285cf76821ef097ddc4cabeb7fb.js": "/weather-react-app/precache-manifest.a6e1d285cf76821ef097ddc4cabeb7fb.js",
   "service-worker.js": "/weather-react-app/service-worker.js",
-  "static/css/main.45508c4f.chunk.css.map": "/weather-react-app/static/css/main.45508c4f.chunk.css.map",
+  "static/css/main.8059cca2.chunk.css.map": "/weather-react-app/static/css/main.8059cca2.chunk.css.map",
   "static/media/Clear-movie.mp4": "/weather-react-app/static/media/Clear-movie.29b9c499.mp4",
   "static/media/Clouds-movie.mp4": "/weather-react-app/static/media/Clouds-movie.8d79ee1d.mp4",
   "static/media/Drizzle-movie.mp4": "/weather-react-app/static/media/Drizzle-movie.dad8d921.mp4",
