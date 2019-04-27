@@ -2,7 +2,7 @@
   "name": "weather-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/Bankot/weather-react-app",
+  "homepage": "https://bankot.github.io/weather-react-app",
   "dependencies": {
     "axios": "^0.18.0",
     "gh-pages": "^2.0.1",
