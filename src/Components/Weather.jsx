@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import WeatherPanel from "./weatherPanel";
 import AnimateLoad from "./anim";
 class Weather extends Component {
-  state = { weather: [], type: {} };
+  state = { weather: [], type: {}, error: 1 };
   shouldComponentUpdate(nextProps, nextState) {
     return this.state.weather !== nextState.weather;
   }

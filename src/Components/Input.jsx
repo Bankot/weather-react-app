@@ -26,15 +26,23 @@ class Input extends Component {
       );
     };
     const handleSubmit = e => {
+      let select = document.getElementById("unitchecker");
       e.preventDefault();
       if (document.getElementsByClassName("autocomplete-item-active").length) {
         this.props.history.push(
           "/" +
             document.getElementsByClassName("autocomplete-item-active")[0]
-              .innerText
+              .innerText +
+            "&units=" +
+            select.options[select.selectedIndex].value
         );
       } else {
-        this.props.history.push("/" + result.trim());
+        this.props.history.push(
+          "/" +
+            result.trim() +
+            "&units=" +
+            select.options[select.selectedIndex].value
+        );
       }
     };
     const clearCollection = () => {
@@ -220,7 +228,7 @@ class Input extends Component {
                 handleChange(e.target);
               }}
             />
-            <button>
+            <button type="submit">
               <span>></span>
             </button>
           </form>
