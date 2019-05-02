@@ -59,6 +59,9 @@ class Weather extends Component {
 
     return (
       <BrowserRouter>
+        <div className="loading-content">
+          <h1>Loading</h1>
+        </div>
         <div>{finaloutput}</div>
       </BrowserRouter>
     );
